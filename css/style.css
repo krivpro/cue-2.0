@@ -54,6 +54,7 @@ body {
   background: #ffffff;
   color: #1f1f1f;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 a {
@@ -72,6 +73,7 @@ a {
   flex-direction: column;
   position: relative;
   background: #ffffff;
+  overflow-x: hidden;
 }
 
 .container {
@@ -80,6 +82,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .header {
@@ -413,6 +417,7 @@ textarea::placeholder {
   background: #ffffff;
   padding: 110px 16px 120px;
   z-index: 40;
+  overflow-x: hidden;
 }
 
 .modal--active {
@@ -428,6 +433,7 @@ textarea::placeholder {
   background: #ffffff;
   padding: 0;
   box-shadow: none;
+  overflow-x: hidden;
 }
 
 .modal__content--large {
@@ -508,10 +514,13 @@ textarea::placeholder {
   color: #414141;
 }
 
+.set-songs-section__add-btn {
+  margin-top: 16px;
+}
+
 .modal__btn--confirm,
 .songs__add-btn,
 .set-songs-section__add-btn {
-  margin-top: 16px;
   flex: 1;
   background: #ff4d4d;
   color: #ffffff;
@@ -531,17 +540,46 @@ textarea::placeholder {
   cursor: pointer;
 }
 
+/* Performance Modal Styles - закреплённая шапка */
 .performance-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 20px;
+  padding-bottom: 16px;
+  background: inherit;
+  z-index: 10;
+  flex-wrap: wrap;
+}
+
+.performance-header__info {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.performance-header__title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.performance-header__progress {
+  font-size: 13px;
+  color: #8a8a8a;
 }
 
 .performance-header__controls {
   display: flex;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .performance-header__btn {
@@ -558,14 +596,63 @@ textarea::placeholder {
   cursor: pointer;
 }
 
-.performance-header__title {
-  font-size: 24px;
+.performance-header__btn--close {
+  background: #ff4d4d;
+  color: #ffffff;
 }
 
 .performance-content {
   white-space: pre-wrap;
   font-size: 14px;
-  line-height: 1.35;
+  line-height: 1.5;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  word-break: break-word;
+  padding-bottom: 20px;
+}
+
+.performance-song-info {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 12px;
+}
+
+.performance-song-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.performance-song-number {
+  font-size: 14px;
+  color: #8a8a8a;
+}
+
+.performance-song-text {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-x: hidden;
+  font-family: inherit;
+}
+
+/* Zoom buttons styles */
+.performance-zoom-controls {
+  display: flex;
+  gap: 8px;
+  margin-right: 8px;
+}
+
+.performance-zoom-controls .performance-header__btn {
+  background: #f7f7f7;
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .footer {
@@ -605,6 +692,37 @@ textarea::placeholder {
   background: #dfdfdf;
 }
 
+/* Drag-and-drop styles */
+.set-song-item[draggable="true"],
+.set-song-modal-item[draggable="true"] {
+  cursor: grab;
+  transition: background 0.2s ease;
+}
+
+.set-song-item[draggable="true"]:active,
+.set-song-modal-item[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+.set-song-item.drag-over,
+.set-song-modal-item.drag-over {
+  border-top: 2px solid #ff4d4d;
+  padding-top: 6px;
+  margin-top: -2px;
+}
+
+.set-song-item__drag-handle,
+.set-song-modal-item__drag-handle {
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.set-song-item:hover .set-song-item__drag-handle,
+.set-song-modal-item:hover .set-song-modal-item__drag-handle {
+  opacity: 1;
+}
+
+/* Theme Dark Styles */
 body.theme-dark .app-shell,
 body.theme-dark .footer,
 body.theme-dark .modal,
@@ -661,6 +779,11 @@ body.theme-dark .nav__btn--active {
   color: #ffffff;
 }
 
+body.theme-dark .performance-header__btn--close {
+  background: #ff4d4d;
+  color: #ffffff;
+}
+
 body.theme-dark .nav__btn--muted {
   background: #2d3444;
 }
@@ -681,8 +804,23 @@ body.theme-dark .empty-msg,
 body.theme-dark .song-item__text-preview,
 body.theme-dark .song-selector-item__text-preview,
 body.theme-dark .form-group label,
-body.theme-dark .performance-header__progress {
+body.theme-dark .performance-header__progress,
+body.theme-dark .performance-song-number {
   color: #9ca3af;
+}
+
+body.theme-dark .performance-song-info {
+  border-bottom-color: #2a3140;
+}
+
+body.theme-dark .set-song-item.drag-over,
+body.theme-dark .set-song-modal-item.drag-over {
+  border-top-color: #ff6b6b;
+}
+
+body.theme-dark .performance-zoom-controls .performance-header__btn {
+  background: #222937;
+  color: #f3f4f6;
 }
 
 .nav__icon-placeholder {
@@ -711,67 +849,12 @@ body.theme-dark .performance-header__progress {
   .modal {
     padding: 110px 16px 118px;
   }
-}
-
-/* Drag-and-drop styles */
-.set-song-item[draggable="true"],
-.set-song-modal-item[draggable="true"] {
-  cursor: grab;
-  transition: background 0.2s ease;
-}
-
-.set-song-item[draggable="true"]:active,
-.set-song-modal-item[draggable="true"]:active {
-  cursor: grabbing;
-}
-
-.set-song-item.drag-over,
-.set-song-modal-item.drag-over {
-  border-top: 2px solid #ff4d4d;
-  padding-top: 6px;
-  margin-top: -2px;
-}
-
-.set-song-item__drag-handle,
-.set-song-modal-item__drag-handle {
-  opacity: 0.5;
-  transition: opacity 0.2s ease;
-}
-
-.set-song-item:hover .set-song-item__drag-handle,
-.set-song-modal-item:hover .set-song-modal-item__drag-handle {
-  opacity: 1;
-}
-
-body.theme-dark .set-song-item.drag-over,
-body.theme-dark .set-song-modal-item.drag-over {
-  border-top-color: #ff6b6b;
-}
-
-/* Zoom buttons styles */
-.performance-zoom-controls {
-  display: flex;
-  gap: 8px;
-  margin-right: 8px;
-}
-
-.performance-zoom-controls .performance-header__btn {
-  background: #f7f7f7;
-  border-radius: 12px;
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-body.theme-dark .performance-zoom-controls .performance-header__btn {
-  background: #222937;
-  color: #f3f4f6;
-}
-
-/* Performance text zoom support */
-.performance-content {
-  transition: font-size 0.2s ease;
+  
+  .performance-header__title {
+    font-size: 16px;
+  }
+  
+  .performance-song-title {
+    font-size: 18px;
+  }
 }
