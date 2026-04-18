@@ -415,7 +415,7 @@ textarea::placeholder {
   align-items: stretch;
   justify-content: flex-start;
   background: #ffffff;
-  padding: 110px 16px 120px;
+  padding: 60px 16px 100px;
   z-index: 40;
   overflow-x: hidden;
 }
@@ -833,7 +833,7 @@ body.theme-dark .performance-zoom-controls .performance-header__btn {
 
 @media (max-width: 420px) {
   .container {
-    padding: 110px 16px 118px;
+    padding: 60px 16px 100px;
   }
 
   .workspace__title {
@@ -847,7 +847,7 @@ body.theme-dark .performance-zoom-controls .performance-header__btn {
   }
 
   .modal {
-    padding: 110px 16px 118px;
+    padding: 60px 16px 100px;
   }
   
   .performance-header__title {
