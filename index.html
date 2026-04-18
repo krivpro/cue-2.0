@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cue</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <main class="container">
+      <div class="header">
+        <div class="header__title">Приветствую в <span class="header__title-accent">Cue.</span><br><span class="header__title-sub">приложении для выступлений</span></div>
+      </div>
+
+      <div class="menu">
+        <ul class="menu__list"></ul>
+      </div>
+
+      <div class="workspace">
+        <div class="workspace__header">
+          <h2 class="workspace__title">Выберите выступление</h2>
+          <button class="workspace__add-set-btn link-btn hidden" id="addSetBtn">Добавить сет</button>
+        </div>
+        <textarea class="workspace__editor" placeholder="Место выступления" id="speechEditor"></textarea>
+        <div class="sets-container" id="setsContainer"></div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <nav class="nav">
+        <a href="index.html" class="nav__btn nav__btn--active" aria-label="Главная">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M23.9085 15.1265C23.0379 14.2912 21.6634 14.2912 20.7928 15.1265L16.1664 19.5659C16.053 19.6746 15.9768 19.8163 15.9485 19.9708C15.3943 22.9927 15.3534 26.0863 15.8275 29.1218L15.94 29.8423H18.9164V23.6309C18.9164 23.2167 19.2522 22.8809 19.6664 22.8809H25.0349C25.4491 22.8809 25.7849 23.2167 25.7849 23.6309V29.8423H28.7613L28.8738 29.1218C29.3479 26.0863 29.307 22.9927 28.7528 19.9708C28.7245 19.8163 28.6483 19.6746 28.5349 19.5659L23.9085 15.1265ZM19.7543 14.0442C21.2052 12.6519 23.4961 12.6519 24.947 14.0442L29.5735 18.4835C29.914 18.8103 30.1431 19.236 30.2282 19.7003C30.8128 22.8879 30.8559 26.1512 30.3559 29.3532L30.1751 30.5107C30.1004 30.9894 29.6881 31.3423 29.2036 31.3423H25.0349C24.6206 31.3423 24.2849 31.0065 24.2849 30.5923V24.3809H20.4164V30.5923C20.4164 31.0065 20.0807 31.3423 19.6664 31.3423H15.4977C15.0132 31.3423 14.6009 30.9894 14.5262 30.5107L14.3454 29.3532C13.8454 26.1512 13.8885 22.8879 14.4731 19.7003C14.5582 19.236 14.7873 18.8103 15.1278 18.4835L19.7543 14.0442Z" fill="white"/>
+          </svg>
+        </a>
+        <a href="#" class="nav__btn nav__btn--muted" aria-label="Профиль">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5 17.5C17.5 15.1528 19.4028 13.25 21.75 13.25C24.0972 13.25 26 15.1528 26 17.5C26 19.8472 24.0972 21.75 21.75 21.75C19.4028 21.75 17.5 19.8472 17.5 17.5ZM21.75 14.75C20.2312 14.75 19 15.9812 19 17.5C19 19.0188 20.2312 20.25 21.75 20.25C23.2688 20.25 24.5 19.0188 24.5 17.5C24.5 15.9812 23.2688 14.75 21.75 14.75Z" fill="white"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.75 24.75C16.5074 24.75 15.5 25.7574 15.5 27V28.1883C15.5 28.2064 15.5131 28.2218 15.531 28.2247C19.6497 28.8972 23.8503 28.8972 27.969 28.2247C27.9869 28.2218 28 28.2064 28 28.1883V27C28 25.7574 26.9926 24.75 25.75 24.75H25.4091C25.3828 24.75 25.3566 24.7542 25.3315 24.7623L24.466 25.045C22.7012 25.6212 20.7988 25.6212 19.034 25.045L18.1685 24.7623C18.1434 24.7542 18.1172 24.75 18.0909 24.75H17.75ZM14 27C14 24.9289 15.6789 23.25 17.75 23.25H18.0909C18.2754 23.25 18.4587 23.2792 18.6341 23.3364L19.4996 23.6191C20.9619 24.0965 22.5381 24.0965 24.0004 23.6191L24.8659 23.3364C25.0413 23.2792 25.2246 23.25 25.4091 23.25H25.75C27.8211 23.25 29.5 24.9289 29.5 27V28.1883C29.5 28.9415 28.9541 29.5837 28.2107 29.7051C23.9319 30.4037 19.5681 30.4037 15.2893 29.7051C14.5459 29.5837 14 28.9415 14 28.1883V27Z" fill="white"/>
+          </svg>
+        </a>
+        <button type="button" class="nav__btn nav__btn--active" id="newSpeechBtn" aria-label="Добавить">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 31.1666V12.8333" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M12.8333 22L31.1667 22" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button type="button" class="nav__btn nav__btn--active" id="songsBtn" aria-label="Песни">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.75 12.25C21.3358 12.25 21 12.5858 21 13V17C21 17.0001 21 16.9999 21 17L21 24.2595C20.2588 23.6299 19.2988 23.25 18.25 23.25C15.9028 23.25 14 25.1528 14 27.5C14 29.8472 15.9028 31.75 18.25 31.75C20.5972 31.75 22.5 29.8472 22.5 27.5C22.5 27.3812 22.4951 27.2635 22.4856 27.1472C22.495 27.0996 22.5 27.0504 22.5 27L22.5 17.75H27.75C29.2688 17.75 30.5 16.5188 30.5 15C30.5 13.4812 29.2688 12.25 27.75 12.25H21.75ZM22.5 16.25H27.75C28.4404 16.25 29 15.6904 29 15C29 14.3096 28.4404 13.75 27.75 13.75H22.5V16.25ZM18.25 24.75C16.7312 24.75 15.5 25.9812 15.5 27.5C15.5 29.0188 16.7312 30.25 18.25 30.25C19.7688 30.25 21 29.0188 21 27.5C21 25.9812 19.7688 24.75 18.25 24.75Z" fill="white"/>
+          </svg>
+        </button>
+        <a href="#" class="nav__btn nav__btn--muted" aria-label="Настройки">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.1987 12.5873C21.697 12.3104 22.303 12.3104 22.8013 12.5873L30.0013 16.5873C30.5251 16.8783 30.85 17.4304 30.85 18.0296V25.9705C30.85 26.5697 30.5251 27.1219 30.0013 27.4129L22.8013 31.4129C22.303 31.6897 21.697 31.6897 21.1987 31.4129L13.9987 27.4129C13.4749 27.1219 13.15 26.5697 13.15 25.9705V18.0296C13.15 17.4304 13.4749 16.8783 13.9987 16.5873L21.1987 12.5873ZM22.0728 13.8985C22.0275 13.8733 21.9725 13.8733 21.9271 13.8985L14.7271 17.8985C14.6795 17.925 14.65 17.9752 14.65 18.0296V25.9705C14.65 26.025 14.6795 26.0752 14.7271 26.1016L21.9271 30.1016C21.9725 30.1268 22.0275 30.1268 22.0728 30.1016L29.2728 26.1016C29.3205 26.0752 29.35 26.025 29.35 25.9705V18.0296C29.35 17.9752 29.3205 17.925 29.2728 17.8985L22.0728 13.8985Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.25 22.0001C17.25 19.3767 19.3766 17.2501 22 17.2501C24.6233 17.2501 26.75 19.3767 26.75 22.0001C26.75 24.6234 24.6233 26.7501 22 26.7501C19.3766 26.7501 17.25 24.6234 17.25 22.0001ZM22 18.7501C20.2051 18.7501 18.75 20.2051 18.75 22.0001C18.75 23.795 20.2051 25.2501 22 25.2501C23.7949 25.2501 25.25 23.795 25.25 22.0001C25.25 20.2051 23.7949 18.7501 22 18.7501Z" fill="white"/>
+          </svg>
+        </a>
+      </nav>
+    </footer>
+  </div>
+
+  <div class="modal" id="setModal">
+    <div class="modal__content modal__content--large">
+      <div class="modal__header">
+        <h3 class="modal__title">Редактирование сета</h3>
+        <button class="modal__close-btn icon-btn" id="closeSetBtn" aria-label="Закрыть">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.46445 15.5354L15.5355 8.46436" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8.46446 8.46458L15.5355 15.5356" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="form-group">
+          <label>Название сета:</label>
+          <input type="text" id="setNameInput" class="modal__input">
+        </div>
+        
+        <div class="set-songs-section">
+          <div class="set-songs-section__header">
+            <h4>Песни в сете</h4>
+            <button class="set-songs-section__add-btn" id="addSongToSetBtn">+ Добавить песню</button>
+          </div>
+          <div class="set-songs-section__list" id="setSongsList"></div>
+        </div>
+      </div>
+      <div class="modal__buttons">
+        <button class="modal__btn modal__btn--cancel" id="cancelSetBtn">Отмена</button>
+        <button class="modal__btn modal__btn--confirm" id="saveSetBtn">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="songsModal">
+    <div class="modal__content modal__content--large">
+      <div class="modal__header">
+        <h3 class="modal__title">Управление песнями</h3>
+        <button class="modal__close-btn icon-btn" id="closeSongsBtn" aria-label="Закрыть">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.46445 15.5354L15.5355 8.46436" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8.46446 8.46458L15.5355 15.5356" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="songs-controls">
+          <button class="songs__add-btn" id="addSongBtn">+ Добавить песню</button>
+        </div>
+        <div class="songs-list" id="songsList"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="songEditModal">
+    <div class="modal__content">
+      <h3 class="modal__title" id="songEditTitle">Добавить песню</h3>
+      <div class="modal__body">
+        <div class="form-group">
+          <label>Название песни:</label>
+          <input type="text" id="songTitleInput" class="modal__input" placeholder="Введите название песни">
+        </div>
+        <div class="form-group">
+          <label>Текст песни:</label>
+          <textarea id="songTextInput" class="modal__input modal__textarea" placeholder="Введите текст песни..."></textarea>
+        </div>
+      </div>
+      <div class="modal__buttons">
+        <button class="modal__btn modal__btn--cancel" id="cancelSongBtn">Отмена</button>
+        <button class="modal__btn modal__btn--confirm" id="saveSongBtn">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="errorModal">
+    <div class="modal__content">
+      <h3 class="modal__title">Ошибка</h3>
+      <div class="modal__body">
+        <p class="modal__message" id="errorMessage"></p>
+      </div>
+      <div class="modal__buttons">
+        <button class="modal__btn modal__btn--confirm" id="errorOkBtn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="addSongToSetModal">
+    <div class="modal__content modal__content--large">
+      <div class="modal__header">
+        <h3 class="modal__title">Добавить песню в сет</h3>
+        <button class="modal__close-btn icon-btn" id="closeAddSongToSetBtn" aria-label="Закрыть">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.46445 15.5354L15.5355 8.46436" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8.46446 8.46458L15.5355 15.5356" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="songs-selector">
+          <div class="songs-selector__search">
+            <input type="text" id="songSearchInput" class="modal__input" placeholder="Поиск песен...">
+          </div>
+          <div class="songs-selector__list" id="songsSelectorList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="performanceModal">
+    <div class="modal__content modal__content--fullscreen">
+      <div class="performance-header">
+        <div class="performance-header__info">
+          <h2 class="performance-header__title" id="performanceTitle">Выступление</h2>
+          <div class="performance-header__progress" id="performanceProgress">Песня 1 из 3</div>
+        </div>
+        <div class="performance-header__controls">
+          <button class="performance-header__btn icon-btn" id="prevSongBtn" title="Предыдущая песня" aria-label="Предыдущая песня">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.75 7C6.75 6.58579 6.41421 6.25 6 6.25C5.58579 6.25 5.25 6.58579 5.25 7V17C5.25 17.4142 5.58579 17.75 6 17.75C6.41421 17.75 6.75 17.4142 6.75 17V7Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.39314 13.2525C8.57379 12.6185 8.57379 11.3815 9.39314 10.7475C11.5522 9.07691 13.9631 7.76013 16.5356 6.84648L17.0017 6.68095C18.0252 6.31743 19.102 7.00992 19.24 8.06199C19.5797 10.6521 19.5797 13.3479 19.24 15.938C19.102 16.9901 18.0252 17.6826 17.0017 17.3191L16.5356 17.1535C13.9631 16.2399 11.5522 14.9231 9.39314 13.2525ZM10.3111 11.9339C10.2678 11.9673 10.2678 12.0327 10.3111 12.0662C12.3444 13.6395 14.6149 14.8796 17.0376 15.74L17.5037 15.9056C17.6039 15.9412 17.7356 15.8733 17.7527 15.743C18.0754 13.2824 18.0754 10.7176 17.7527 8.25704C17.7356 8.12674 17.6039 8.05886 17.5037 8.09445L17.0376 8.25997C14.6149 9.12043 12.3444 10.3605 10.3111 11.9339Z" fill="currentColor"/>
+            </svg>
+          </button>
+          <button class="performance-header__btn icon-btn" id="nextSongBtn" title="Следующая песня" aria-label="Следующая песня">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6069 10.7475C15.4262 11.3815 15.4262 12.6185 14.6069 13.2525C12.4478 14.9231 10.0369 16.2399 7.46437 17.1535L6.99832 17.3191C5.9748 17.6826 4.89799 16.9901 4.76001 15.938C4.42033 13.3479 4.42033 10.6521 4.76001 8.06199C4.89799 7.00991 5.97479 6.31743 6.99832 6.68095L7.46437 6.84647C10.0369 7.76013 12.4478 9.07691 14.6069 10.7475ZM13.6889 12.0661C13.7322 12.0327 13.7322 11.9673 13.6889 11.9339C11.6556 10.3605 9.38505 9.12042 6.96235 8.25997L6.4963 8.09444C6.39609 8.05885 6.26436 8.12674 6.24728 8.25704C5.92457 10.7176 5.92457 13.2824 6.24728 15.743C6.26436 15.8733 6.39609 15.9411 6.4963 15.9056L6.96235 15.74C9.38505 14.8796 11.6556 13.6395 13.6889 12.0661Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M18 6.25C18.4142 6.25 18.75 6.58579 18.75 7V17C18.75 17.4142 18.4142 17.75 18 17.75C17.5858 17.75 17.25 17.4142 17.25 17V7C17.25 6.58579 17.5858 6.25 18 6.25Z" fill="currentColor"/>
+            </svg>
+          </button>
+          <button class="performance-header__btn performance-header__btn--close icon-btn" id="closePerformanceBtn" title="Закрыть" aria-label="Закрыть">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.46445 15.5354L15.5355 8.46436" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M8.46446 8.46458L15.5355 15.5356" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="performance-content">
+        <div class="performance-song-info">
+          <h3 class="performance-song-title" id="currentSongTitle">Название песни</h3>
+          <div class="performance-song-number" id="currentSongNumber">1.</div>
+        </div>
+        <div class="performance-song-text" id="currentSongText"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="confirmModal">
+    <div class="modal__content">
+      <h3 class="modal__title">Подтверждение</h3>
+      <div class="modal__body">
+        <p class="modal__message" id="confirmMessage"></p>
+      </div>
+      <div class="modal__buttons">
+        <button class="modal__btn modal__btn--cancel" id="confirmCancelBtn">Отмена</button>
+        <button class="modal__btn modal__btn--confirm" id="confirmOkBtn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/preset-songs.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
