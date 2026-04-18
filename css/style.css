@@ -78,7 +78,7 @@ a {
 
 .container {
   flex: 1;
-  padding: 110px 16px 120px;
+  padding: 60px 16px 100px;
   display: flex;
   flex-direction: column;
   gap: 32px;
